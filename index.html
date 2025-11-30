@@ -5,65 +5,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aurum Auto Detailing</title>
 <style>
-  /* Reset */
+  /* Reset & Basic Styles */
   * {margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif;}
-  body {background:#111; color:#fff; line-height:1.6; overflow-x:hidden;}
+  body {background:#000; color:#fff; line-height:1.6; scroll-behavior:smooth;}
   a {text-decoration:none; color:#fff;}
   img {display:block; width:100%; border-radius:10px;}
 
   /* Container */
   .container {width:90%; max-width:1200px; margin:0 auto;}
 
+  /* Header & Nav */
+  header {position:fixed; width:100%; background:#111; top:0; z-index:1000; padding:10px 0; box-shadow:0 2px 8px rgba(0,0,0,0.5);}
+  header h1 {text-align:center; font-size:2rem; color:#fff;}
+  nav {text-align:center; margin-top:5px;}
+  nav a {margin:0 10px; color:#fff; font-weight:bold; transition:0.3s;}
+  nav a:hover {color:#888;}
+
   /* Hero Section */
-  .hero {
-    height:100vh;
-    background: url('https://images.unsplash.com/photo-1563720229230-d6078a91a1c5?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat fixed;
-    display:flex; flex-direction: column; justify-content:center; align-items:center; text-align:center;
-    color:#FFD700;
-  }
-  .hero h1 {font-size:3.5rem; margin-bottom:15px; opacity:0; transform:translateY(50px); animation:fadeSlide 1s forwards;}
-  .hero p {font-size:1.5rem; margin-bottom:25px; opacity:0; transform:translateY(50px); animation:fadeSlide 1.2s forwards;}
-  .hero a.button {
-    background:#FFD700; color:#000; padding:15px 35px; border-radius:10px; font-weight:bold; transition:0.3s;
-    display:inline-block; opacity:0; transform:translateY(50px); animation:fadeSlide 1.4s forwards;
-  }
+  .hero {height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
+         background: url('https://images.unsplash.com/photo-1595268097122-8cfef6a619fd?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat fixed;}
+  .hero h1 {font-size:3.5rem; color:#fff; margin-bottom:15px; opacity:0; transform:translateY(50px);}
+  .hero p {font-size:1.5rem; margin-bottom:25px; opacity:0; transform:translateY(50px);}
+  .hero a.button {background:#fff; color:#000; padding:15px 35px; border-radius:10px; font-weight:bold; display:inline-block; opacity:0; transform:translateY(50px); transition:0.3s;}
   .hero a.button:hover {transform:scale(1.1);}
 
   /* Sections */
   section {padding:80px 0;}
-  h2 {text-align:center; font-size:2.8rem; margin-bottom:50px; position: relative;}
-  h2::after {content:''; width:100px; height:3px; background:#FFD700; display:block; margin:10px auto 0; border-radius:2px;}
+  h2 {text-align:center; font-size:2.8rem; margin-bottom:50px; position: relative; color:#fff;}
+  h2::after {content:''; width:100px; height:3px; background:#fff; display:block; margin:10px auto 0; border-radius:2px;}
 
-  /* Services */
-  .services {display:flex; flex-wrap:wrap; justify-content:space-around;}
-  .service {
-    background:#222; padding:20px; margin:15px; border-radius:15px; flex:1 1 300px; max-width:300px;
-    text-align:center; transition: transform 0.3s, box-shadow 0.3s; opacity:0; transform:translateY(50px);
-  }
-  .service:hover {transform: translateY(-10px); box-shadow:0 10px 20px rgba(0,0,0,0.5);}
-  .service h3 {margin:15px 0;}
+  /* Cards */
+  .grid {display:flex; flex-wrap:wrap; justify-content:space-around;}
+  .card {background:#111; padding:20px; margin:15px; border-radius:15px; flex:1 1 280px; max-width:300px; text-align:center;
+        transition: transform 0.3s, box-shadow 0.3s; opacity:0; transform:translateY(50px);}
+  .card:hover {transform:translateY(-10px); box-shadow:0 10px 20px rgba(255,255,255,0.2);}
+  .card h3 {margin:15px 0; color:#fff;}
+  .card p {font-size:1.1rem; color:#ccc;}
 
   /* Gallery */
   .gallery {display:grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap:20px;}
   .gallery img {transition: transform 0.4s; opacity:0; transform:translateY(50px);}
   .gallery img:hover {transform: scale(1.05);}
 
-  /* Pricing */
-  .pricing {display:flex; flex-wrap:wrap; justify-content:center;}
-  .price-card {
-    background:#222; margin:15px; padding:25px; border-radius:15px; flex:1 1 280px; max-width:300px;
-    text-align:center; transition: transform 0.3s, box-shadow 0.3s; opacity:0; transform:translateY(50px);
-  }
-  .price-card:hover {transform: translateY(-10px); box-shadow:0 10px 20px rgba(0,0,0,0.5);}
-  .price-card h3 {font-size:1.8rem; margin-bottom:15px; color:#FFD700;}
-  .price-card p {font-size:1.3rem;}
-
   /* Contact */
   .contact {text-align:center;}
   .contact a.button {margin-top:20px;}
 
   /* Footer */
-  footer {text-align:center; padding:25px; background:#111; border-top:1px solid #333;}
+  footer {text-align:center; padding:25px; background:#111; border-top:1px solid #333; margin-top:50px; color:#ccc;}
 
   /* Animations */
   @keyframes fadeSlide {to {opacity:1; transform:translateY(0);}}
@@ -71,8 +60,22 @@
 </head>
 <body>
 
+<header>
+  <div class="container">
+    <h1>Aurum Auto Detailing</h1>
+    <nav>
+      <a href="#hero">Home</a>
+      <a href="#services">Services</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#products">Products</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
 <!-- Hero Section -->
-<section class="hero">
+<section id="hero" class="hero">
   <h1>Aurum Auto Detailing</h1>
   <p>Professional Mobile Car Detailing in Keswick</p>
   <a href="#contact" class="button">Book Now</a>
@@ -81,21 +84,21 @@
 <!-- Services Section -->
 <section id="services" class="container">
   <h2>Our Services</h2>
-  <div class="services">
-    <div class="service">
-      <img src="https://images.unsplash.com/photo-1603570417183-93065f2351d5?auto=format&fit=crop&w=800&q=80" alt="Exterior Detailing">
+  <div class="grid">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1595268097122-8cfef6a619fd?auto=format&fit=crop&w=800&q=80" alt="Exterior Detailing">
       <h3>Exterior Detailing</h3>
-      <p>Hand wash, wax, paint restoration, and tire shine to make your car shine like new.</p>
+      <p>Hand wash, wax, paint correction, tire dressing, and polishing for a showroom shine.</p>
     </div>
-    <div class="service">
-      <img src="https://images.unsplash.com/photo-1617104353241-c5e1224d11c3?auto=format&fit=crop&w=800&q=80" alt="Interior Detailing">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1603079969395-c0b5d7eaf3e7?auto=format&fit=crop&w=800&q=80" alt="Interior Detailing">
       <h3>Interior Detailing</h3>
-      <p>Deep cleaning, vacuum, stain removal, and odor elimination for a fresh interior.</p>
+      <p>Vacuum, steam clean, stain removal, odor elimination, and deep cleaning for your car interior.</p>
     </div>
-    <div class="service">
-      <img src="https://images.unsplash.com/photo-1625488338868-7a2c1dc42dc5?auto=format&fit=crop&w=800&q=80" alt="Full Detailing">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1595268097122-8cfef6a619fd?auto=format&fit=crop&w=800&q=80" alt="Full Detailing">
       <h3>Full Detailing</h3>
-      <p>Complete interior + exterior detailing package for a full showroom finish.</p>
+      <p>Complete interior and exterior detailing package for a fully restored vehicle.</p>
     </div>
   </div>
 </section>
@@ -104,26 +107,65 @@
 <section id="gallery" class="container">
   <h2>Gallery</h2>
   <div class="gallery">
-    <img src="https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=800&q=80" alt="Car 1">
-    <img src="https://images.unsplash.com/photo-1583267745828-f7d4ab14f4ed?auto=format&fit=crop&w=800&q=80" alt="Car 2">
-    <img src="https://images.unsplash.com/photo-1607345365971-204e2e7fc1d6?auto=format&fit=crop&w=800&q=80" alt="Car 3">
-    <img src="https://images.unsplash.com/photo-1616634554414-48f1d56a482c?auto=format&fit=crop&w=800&q=80" alt="Car 4">
+    <img src="https://images.unsplash.com/photo-1595268097122-8cfef6a619fd?auto=format&fit=crop&w=800&q=80" alt="Car 1">
+    <img src="https://images.unsplash.com/photo-1603079969395-c0b5d7eaf3e7?auto=format&fit=crop&w=800&q=80" alt="Car 2">
+    <img src="https://images.unsplash.com/photo-1627609947725-4b7b50a7189c?auto=format&fit=crop&w=800&q=80" alt="Car Brush">
+    <img src="https://images.unsplash.com/photo-1599011251726-0d07345f2d9c?auto=format&fit=crop&w=800&q=80" alt="Microfiber Towels">
+    <img src="https://images.unsplash.com/photo-1614825011991-cd7854a2aadb?auto=format&fit=crop&w=800&q=80" alt="Vacuum">
+    <img src="https://images.unsplash.com/photo-1586227747596-1b09c1f3a1f4?auto=format&fit=crop&w=800&q=80" alt="Pressure Washer">
+  </div>
+</section>
+
+<!-- Products Section -->
+<section id="products" class="container">
+  <h2>Our Products</h2>
+  <div class="grid">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1599011251726-0d07345f2d9c?auto=format&fit=crop&w=800&q=80" alt="Microfiber Towels">
+      <h3>Microfiber Towels</h3>
+      <p>High-quality microfiber towels for scratch-free cleaning and polishing.</p>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1627609947725-4b7b50a7189c?auto=format&fit=crop&w=800&q=80" alt="Car Brushes">
+      <h3>Car Brushes</h3>
+      <p>Various brushes for interior and exterior detailing including tires and rims.</p>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1614825011991-cd7854a2aadb?auto=format&fit=crop&w=800&q=80" alt="Vacuum">
+      <h3>Vacuum</h3>
+      <p>Powerful portable vacuum for interior deep cleaning.</p>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1586227747596-1b09c1f3a1f4?auto=format&fit=crop&w=800&q=80" alt="Pressure Washer">
+      <h3>Pressure Washer</h3>
+      <p>High-pressure washers for exterior cleaning and paint preparation.</p>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1610449039348-1f267eae8a7e?auto=format&fit=crop&w=800&q=80" alt="Car Wax Bottles">
+      <h3>Car Wax</h3>
+      <p>Premium car wax for a lasting shine and paint protection.</p>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1598536122017-48a7434c32f1?auto=format&fit=crop&w=800&q=80" alt="Detailing Spray">
+      <h3>Detailing Spray</h3>
+      <p>Quick detail spray for surface cleaning and gloss enhancement.</p>
+    </div>
   </div>
 </section>
 
 <!-- Pricing Section -->
 <section id="pricing" class="container">
   <h2>Pricing</h2>
-  <div class="pricing">
-    <div class="price-card">
+  <div class="grid">
+    <div class="card">
       <h3>Exterior Detail</h3>
       <p>$80+</p>
     </div>
-    <div class="price-card">
+    <div class="card">
       <h3>Interior Detail</h3>
       <p>$100+</p>
     </div>
-    <div class="price-card">
+    <div class="card">
       <h3>Full Detail</h3>
       <p>$150+</p>
     </div>
@@ -139,16 +181,14 @@
   <a href="tel:7806800206" class="button">Book Now</a>
 </section>
 
-<!-- Footer -->
 <footer>
   &copy; 2025 Aurum Auto Detailing | Keswick
 </footer>
 
 <script>
   // Scroll animations
-  const faders = document.querySelectorAll('.service, .gallery img, .price-card');
+  const faders = document.querySelectorAll('.card, .gallery img, .hero h1, .hero p, .hero a.button');
   const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
-
   const appearOnScroll = new IntersectionObserver(function(entries, observer) {
     entries.forEach(entry => {
       if(!entry.isIntersecting) return;
@@ -157,7 +197,6 @@
       observer.unobserve(entry.target);
     });
   }, appearOptions);
-
   faders.forEach(fader => { appearOnScroll.observe(fader); });
 </script>
 
