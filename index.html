@@ -5,188 +5,161 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aurum Auto Detailing</title>
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        background-color: #000;
-        color: #dde1e7;
-        overflow-x: hidden;
-    }
-    header {
-        background-color: #001f3f;
-        color: #ffffff;
-        text-align: center;
-        padding: 60px 10px;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-    }
-    header h1 { margin: 0; font-size: 3rem; }
-    nav { text-align: center; background-color: #000; padding: 10px 0; }
-    nav a {
-        color: #dde1e7;
-        margin: 0 15px;
-        text-decoration: none;
-        font-weight: bold;
-    }
-    nav a:hover { color: #00bfff; }
-    section {
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        opacity: 0;
-        transform: translateY(50px);
-        transition: all 0.8s ease-out;
-        padding: 50px 20px;
-    }
-    section.visible { opacity: 1; transform: translateY(0); }
-    h2 { color: #00bfff; font-size: 2.5rem; margin-bottom: 25px; text-align: center; }
-    .about, .contact, .services, .reviews { max-width: 900px; text-align: center; line-height: 1.7; }
-    .slider { position: relative; width: 80%; max-width: 900px; overflow: hidden; border-radius: 10px; margin: 20px auto; }
-    .slides { display: flex; transition: transform 0.6s ease; }
-    .slides img { width: 100%; filter: grayscale(100%); border: 2px solid #00bfff; }
-    .slider-buttons { text-align: center; margin-top: 10px; }
-    .slider-buttons button { padding: 10px 20px; margin: 0 5px; border: none; background-color: #001f3f; color: #dde1e7; border-radius: 5px; cursor: pointer; }
-    .slider-buttons button:hover { background-color: #00bfff; color: #000; }
-    .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; margin-top: 25px; }
-    .service { background-color: #001f3f; padding: 25px; border-radius: 10px; }
-    .service h3 { color: #00bfff; margin: 0; font-size: 1.5rem; }
-    .service p { margin-top: 10px; font-size: 1.2rem; }
-    .order-btn { display: block; margin: 30px auto; padding: 18px 40px; background-color: #00bfff; color: #000; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 1.2rem; }
-    .order-btn:hover { background-color: #001f3f; color: #00bfff; border: 2px solid #00bfff; }
-    .review { background-color: #001f3f; padding: 25px; border-radius: 10px; margin-bottom: 20px; font-size: 1.1rem; }
-    .review p { margin: 0; font-style: italic; }
-    .review span { display: block; margin-top: 10px; font-weight: bold; text-align: right; }
-    footer { text-align: center; padding: 20px 0; background-color: #000; color: #dde1e7; }
+  /* Reset */
+  * {margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif;}
+  body {background:#111; color:#fff; line-height:1.6; overflow-x:hidden;}
+  a {text-decoration:none; color:#fff;}
+  img {display:block; width:100%; border-radius:10px;}
 
-    /* Additional styling for gallery slider */
-    .product-gallery, .testimonial-grid, .pricing-grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); margin-top: 20px; }
-    .product-gallery img { width: 100%; border-radius: 10px; border: 2px solid #00bfff; }
+  /* Container */
+  .container {width:90%; max-width:1200px; margin:0 auto;}
+
+  /* Hero Section */
+  .hero {
+    height:100vh;
+    background: url('https://images.unsplash.com/photo-1563720229230-d6078a91a1c5?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat fixed;
+    display:flex; flex-direction: column; justify-content:center; align-items:center; text-align:center;
+    color:#FFD700;
+  }
+  .hero h1 {font-size:3.5rem; margin-bottom:15px; opacity:0; transform:translateY(50px); animation:fadeSlide 1s forwards;}
+  .hero p {font-size:1.5rem; margin-bottom:25px; opacity:0; transform:translateY(50px); animation:fadeSlide 1.2s forwards;}
+  .hero a.button {
+    background:#FFD700; color:#000; padding:15px 35px; border-radius:10px; font-weight:bold; transition:0.3s;
+    display:inline-block; opacity:0; transform:translateY(50px); animation:fadeSlide 1.4s forwards;
+  }
+  .hero a.button:hover {transform:scale(1.1);}
+
+  /* Sections */
+  section {padding:80px 0;}
+  h2 {text-align:center; font-size:2.8rem; margin-bottom:50px; position: relative;}
+  h2::after {content:''; width:100px; height:3px; background:#FFD700; display:block; margin:10px auto 0; border-radius:2px;}
+
+  /* Services */
+  .services {display:flex; flex-wrap:wrap; justify-content:space-around;}
+  .service {
+    background:#222; padding:20px; margin:15px; border-radius:15px; flex:1 1 300px; max-width:300px;
+    text-align:center; transition: transform 0.3s, box-shadow 0.3s; opacity:0; transform:translateY(50px);
+  }
+  .service:hover {transform: translateY(-10px); box-shadow:0 10px 20px rgba(0,0,0,0.5);}
+  .service h3 {margin:15px 0;}
+
+  /* Gallery */
+  .gallery {display:grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap:20px;}
+  .gallery img {transition: transform 0.4s; opacity:0; transform:translateY(50px);}
+  .gallery img:hover {transform: scale(1.05);}
+
+  /* Pricing */
+  .pricing {display:flex; flex-wrap:wrap; justify-content:center;}
+  .price-card {
+    background:#222; margin:15px; padding:25px; border-radius:15px; flex:1 1 280px; max-width:300px;
+    text-align:center; transition: transform 0.3s, box-shadow 0.3s; opacity:0; transform:translateY(50px);
+  }
+  .price-card:hover {transform: translateY(-10px); box-shadow:0 10px 20px rgba(0,0,0,0.5);}
+  .price-card h3 {font-size:1.8rem; margin-bottom:15px; color:#FFD700;}
+  .price-card p {font-size:1.3rem;}
+
+  /* Contact */
+  .contact {text-align:center;}
+  .contact a.button {margin-top:20px;}
+
+  /* Footer */
+  footer {text-align:center; padding:25px; background:#111; border-top:1px solid #333;}
+
+  /* Animations */
+  @keyframes fadeSlide {to {opacity:1; transform:translateY(0);}}
 </style>
 </head>
 <body>
 
-<header>
-    <h1>Aurum Auto Detailing</h1>
-    <p>Keswick, Edmonton, Alberta</p>
-</header>
-
-<nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#services">Services</a>
-    <a href="#reviews">Reviews</a>
-    <a href="#contact">Contact</a>
-</nav>
-
-<!-- Home -->
-<section id="home">
-    <h2>Welcome to Aurum Auto Detailing</h2>
-    <p>Professional car detailing services to keep your vehicle looking its absolute best.</p>
+<!-- Hero Section -->
+<section class="hero">
+  <h1>Aurum Auto Detailing</h1>
+  <p>Professional Mobile Car Detailing in Keswick</p>
+  <a href="#contact" class="button">Book Now</a>
 </section>
 
-<!-- About -->
-<section id="about">
-    <h2>About Us</h2>
-    <div class="about">
-        <p>Aurum Auto Detailing is a family-owned business in Keswick, Edmonton. We specialize in high-quality car detailing, ensuring every vehicle is treated with care. Our mission is to make your car look flawless both inside and out.</p>
-        <p>We bring back that fresh-off-the-lot look to your car. Scroll down to see the difference!</p>
+<!-- Services Section -->
+<section id="services" class="container">
+  <h2>Our Services</h2>
+  <div class="services">
+    <div class="service">
+      <img src="https://images.unsplash.com/photo-1603570417183-93065f2351d5?auto=format&fit=crop&w=800&q=80" alt="Exterior Detailing">
+      <h3>Exterior Detailing</h3>
+      <p>Hand wash, wax, paint restoration, and tire shine to make your car shine like new.</p>
     </div>
-</section>
-
-<!-- Gallery / Before & After Slider -->
-<section id="gallery">
-    <h2>Before & After</h2>
-    <div class="slider">
-        <div class="slides">
-            <img src="https://via.placeholder.com/900x450/000000/00bfff?text=Before+Exterior" alt="Before Exterior">
-            <img src="https://via.placeholder.com/900x450/001f3f/00bfff?text=After+Exterior" alt="After Exterior">
-            <img src="https://via.placeholder.com/900x450/000000/00bfff?text=Before+Interior" alt="Before Interior">
-            <img src="https://via.placeholder.com/900x450/001f3f/00bfff?text=After+Interior" alt="After Interior">
-        </div>
+    <div class="service">
+      <img src="https://images.unsplash.com/photo-1617104353241-c5e1224d11c3?auto=format&fit=crop&w=800&q=80" alt="Interior Detailing">
+      <h3>Interior Detailing</h3>
+      <p>Deep cleaning, vacuum, stain removal, and odor elimination for a fresh interior.</p>
     </div>
-    <div class="slider-buttons">
-        <button onclick="prevSlide()">Prev</button>
-        <button onclick="nextSlide()">Next</button>
+    <div class="service">
+      <img src="https://images.unsplash.com/photo-1625488338868-7a2c1dc42dc5?auto=format&fit=crop&w=800&q=80" alt="Full Detailing">
+      <h3>Full Detailing</h3>
+      <p>Complete interior + exterior detailing package for a full showroom finish.</p>
     </div>
+  </div>
 </section>
 
-<!-- Services -->
-<section id="services">
-    <h2>Our Services</h2>
-    <div class="services">
-        <div class="service"><h3>Basic Detail</h3><p>$100</p></div>
-        <div class="service"><h3>Premium Detail</h3><p>$150</p></div>
-        <div class="service"><h3>Exterior Only</h3><p>$25</p></div>
-        <div class="service"><h3>Interior Only</h3><p>$50</p></div>
+<!-- Gallery Section -->
+<section id="gallery" class="container">
+  <h2>Gallery</h2>
+  <div class="gallery">
+    <img src="https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=800&q=80" alt="Car 1">
+    <img src="https://images.unsplash.com/photo-1583267745828-f7d4ab14f4ed?auto=format&fit=crop&w=800&q=80" alt="Car 2">
+    <img src="https://images.unsplash.com/photo-1607345365971-204e2e7fc1d6?auto=format&fit=crop&w=800&q=80" alt="Car 3">
+    <img src="https://images.unsplash.com/photo-1616634554414-48f1d56a482c?auto=format&fit=crop&w=800&q=80" alt="Car 4">
+  </div>
+</section>
+
+<!-- Pricing Section -->
+<section id="pricing" class="container">
+  <h2>Pricing</h2>
+  <div class="pricing">
+    <div class="price-card">
+      <h3>Exterior Detail</h3>
+      <p>$80+</p>
     </div>
-    <a class="order-btn" href="mailto:nael.zaffar@icloud.com?subject=Car%20Detailing%20Order">Order Now</a>
-</section>
-
-<!-- Reviews / Testimonials -->
-<section id="reviews">
-    <h2>Customer Reviews</h2>
-    <div class="review"><p>"My car looks brand new! Highly recommend Aurum Auto Detailing."</p><span>- Sarah W.</span></div>
-    <div class="review"><p>"Amazing service and attention to detail. Will come back again!"</p><span>- James L.</span></div>
-    <div class="review"><p>"Fast, professional, and affordable. My interior has never been cleaner."</p><span>- Priya K.</span></div>
-    <div class="review"><p>"Best car detailing experience ever. The team is friendly and thorough."</p><span>- Michael T.</span></div>
-</section>
-
-<!-- Products -->
-<section id="products">
-    <h2>Premium Detailing Products</h2>
-    <div class="product-gallery">
-        <img src="https://via.placeholder.com/300x200/001f3f/00bfff?text=Microfiber+Towel" alt="Microfiber Towel">
-        <img src="https://via.placeholder.com/300x200/001f3f/00bfff?text=Detailing+Brush" alt="Detailing Brush">
-        <img src="https://via.placeholder.com/300x200/001f3f/00bfff?text=Foam+Spray" alt="Foam Spray">
+    <div class="price-card">
+      <h3>Interior Detail</h3>
+      <p>$100+</p>
     </div>
-</section>
-
-<!-- Contact -->
-<section id="contact">
-    <h2>Contact Us</h2>
-    <div class="contact">
-        <p>Email: nael.zaffar@icloud.com</p>
-        <p>Phone: (780) 680-0206</p>
-        <p>Address: Keswick, Edmonton, Alberta</p>
+    <div class="price-card">
+      <h3>Full Detail</h3>
+      <p>$150+</p>
     </div>
+  </div>
 </section>
 
+<!-- Contact Section -->
+<section id="contact" class="container contact">
+  <h2>Contact Us</h2>
+  <p>Call or email to book your appointment today!</p>
+  <p>Phone: <a href="tel:7806800206">(780) 680-0206</a></p>
+  <p>Email: <a href="mailto:nael.zaffar@icloud.com">nael.zaffar@icloud.com</a></p>
+  <a href="tel:7806800206" class="button">Book Now</a>
+</section>
+
+<!-- Footer -->
 <footer>
-    &copy; 2025 Aurum Auto Detailing
+  &copy; 2025 Aurum Auto Detailing | Keswick
 </footer>
 
 <script>
-// Scroll animation
-const sections = document.querySelectorAll('section');
-const observer = new IntersectionObserver(entries => {
+  // Scroll animations
+  const faders = document.querySelectorAll('.service, .gallery img, .price-card');
+  const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
+
+  const appearOnScroll = new IntersectionObserver(function(entries, observer) {
     entries.forEach(entry => {
-        if(entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
+      if(!entry.isIntersecting) return;
+      entry.target.style.opacity = 1;
+      entry.target.style.transform = "translateY(0)";
+      observer.unobserve(entry.target);
     });
-}, { threshold: 0.1 });
-sections.forEach(section => observer.observe(section));
+  }, appearOptions);
 
-// Slider functionality
-let currentIndex = 0;
-const slides = document.querySelector('.slides');
-const totalSlides = slides.children.length;
-
-function showSlide(index) {
-    if(index < 0) index = totalSlides - 1;
-    if(index >= totalSlides) index = 0;
-    slides.style.transform = 'translateX(' + (-index * 100) + '%)';
-    currentIndex = index;
-}
-
-function nextSlide() { showSlide(currentIndex + 1); }
-function prevSlide() { showSlide(currentIndex - 1); }
+  faders.forEach(fader => { appearOnScroll.observe(fader); });
 </script>
 
 </body>
 </html>
-  
